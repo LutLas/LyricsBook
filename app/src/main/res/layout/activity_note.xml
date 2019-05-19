@@ -23,12 +23,13 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <EditText
+    <com.codingwithluts.notes.LinedEditText
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/note_text"
         android:textSize="23sp"
         android:textColor="#E5F5ED"
-        android:padding="5dp"/>
+        android:padding="5dp"
+        android:gravity="top"/>
 
 </LinearLayout>

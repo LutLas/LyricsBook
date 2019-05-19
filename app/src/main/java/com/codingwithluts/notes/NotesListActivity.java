@@ -43,7 +43,7 @@ public class NotesListActivity extends AppCompatActivity implements NotesRecycle
     }
 
     private void insertFakeNotes(){
-        for(int i = 1; i < 101; i++){
+        for(int i = 1; i < 11; i++){
             Note note = new Note();
             note.setTitle("Lyrics #" + i);
             note.setContent("content #: " + i);
