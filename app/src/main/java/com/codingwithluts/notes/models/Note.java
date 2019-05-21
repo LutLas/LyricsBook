@@ -1,12 +1,25 @@
 package com.codingwithluts.notes.models;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+@Entity(tableName = "jotes")
 public class Note implements Parcelable {
 
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
+    @ColumnInfo(name = "title")
     private String title;
+
+    @ColumnInfo(name = "content")
     private String content;
+
+    @ColumnInfo(name = "timestamp")
     private String timestamp;
 
     public Note(String title, String content, String timestamp) {
@@ -15,11 +28,13 @@ public class Note implements Parcelable {
         this.timestamp = timestamp;
     }
 
+    @Ignore
     public Note() {
 
     }
 
     protected Note(Parcel in) {
+        id = in.readInt();
         title = in.readString();
         content = in.readString();
         timestamp = in.readString();
@@ -64,22 +79,39 @@ public class Note implements Parcelable {
     @Override
     public String toString() {
         return "Note{" +
-                "title='" + title + '\'' +
+                "id=" + id +
+                ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", timestamp='" + timestamp + '\'' +
                 '}';
     }
+
+
 
     @Override
     public int describeContents() {
         return 0;
     }
 
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
         dest.writeString(title);
         dest.writeString(content);
         dest.writeString(timestamp);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public static Creator<Note> getCREATOR() {
+        return CREATOR;
     }
 }
 
